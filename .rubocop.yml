@@ -1,0 +1,60 @@
+require:
+  - rubocop-minitest
+  - rubocop-performance
+  - rubocop-rake
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
+  TargetRubyVersion: 3.3
+
+Metrics/AbcSize:
+  Max: 32
+  Exclude:
+    - test/**/*.rb
+
+Metrics/ClassLength:
+  Exclude:
+    - test/**/*.rb
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
+Metrics/MethodLength:
+  Max: 35
+  Exclude:
+    - test/**/*.rb
+
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+  MaxOptionalParameters: 4
+
+Metrics/PerceivedComplexity:
+  Max: 10
+
+Minitest/MultipleAssertions:
+  Max: 10
+
+# Can allow short heredoc delimiters in the tests.
+Naming/HeredocDelimiterNaming:
+  Exclude:
+    - test/**/*.rb
+
+Naming/MethodParameterName:
+  AllowedNames: a, b, c, s1, s2, w, x, x1, x2, xs, y, y1, y2, ys, z
+
+# Allow compact child definitions in the tests for brevity.
+Style/ClassAndModuleChildren:
+  Exclude:
+    - test/**/*.rb
+
+Style/Documentation:
+  Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/WordArray:
+  MinSize: 4
+  Exclude:
+    - test/**/*.rb
