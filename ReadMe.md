@@ -5,7 +5,7 @@ My attempt at doing [Advent of Code 2024](http://adventofcode.com/2024) in Ruby,
 
 ![Tests](https://github.com/hainesr/aoc-2024/workflows/Tests/badge.svg)
 ![Linter](https://github.com/hainesr/aoc-2024/workflows/Linter/badge.svg)
-[![Maintainability](https://api.codeclimate.com/v1/badges/40064455a80889a7e05a/maintainability)](https://codeclimate.com/github/hainesr/aoc-2024/maintainability)
+[![Maintainability](https://api.codeclimate.com/v1/badges/887b4897d901f2d695ca/maintainability)](https://codeclimate.com/github/hainesr/aoc-2024/maintainability)
 
 ### Usage
 
