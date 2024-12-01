@@ -15,7 +15,8 @@ module AOC2024
   INPUT_DIR = ::File.expand_path('../etc', __dir__)
 
   DAY_MAP = [
-    'there_is_no_day_zero'
+    'there_is_no_day_zero',
+    'historian_hysteria'
   ].freeze
 
   def self.class_from_day(day)
