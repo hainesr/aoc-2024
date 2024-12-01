@@ -30,9 +30,24 @@ class AOC2024::HistorianHysteriaTest < Minitest::Test
     assert_equal([4, 3, 5, 3, 9, 3], list2)
   end
 
+  def test_calculate_similarities
+    list1, list2 = @hh.read_lists(INPUT)
+
+    assert_equal(
+      { 3 => 9, 4 => 4, 2 => 0, 1 => 0 },
+      @hh.calculate_similarities(list1, list2)
+    )
+  end
+
   def test_part1
     @hh.setup(INPUT)
 
     assert_equal(11, @hh.part1)
+  end
+
+  def test_part2
+    @hh.setup(INPUT)
+
+    assert_equal(31, @hh.part2)
   end
 end
