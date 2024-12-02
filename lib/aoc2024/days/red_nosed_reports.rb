@@ -10,26 +10,34 @@ require 'aoc2024'
 
 module AOC2024
   class RedNosedReports < Day
+    SAFE_INCR = Set[1, 2, 3].freeze
+    SAFE_DECR = Set[-1, -2, -3].freeze
+
     def setup(input = read_input_file.chomp)
-      @lists = read_lists(input)
+      @cache = calculate_diffs(input)
     end
 
     def part1
-      @lists.count { |list| report_safe?(list) }
+      @cache.sum { |set, lists| report_safe?(set) ? lists.size : 0 }
     end
 
     def read_lists(input)
       input.lines.map { |line| line.split.map(&:to_i) }
     end
 
-    def report_safe?(list)
-      sorted = list.sort
-      return false unless sorted == list || sorted.reverse == list
+    def calculate_diffs(input)
+      cache = Hash.new { |h, k| h[k] = [] }
 
-      list.each_cons(2).all? do |a, b|
-        diff = (a - b).abs
-        diff.positive? && diff < 4
+      read_lists(input).each do |list|
+        set = list.each_cons(2).to_set { |a, b| a - b }
+        cache[set] << list
       end
+
+      cache
+    end
+
+    def report_safe?(diffs)
+      diffs.subset?(SAFE_INCR) || diffs.subset?(SAFE_DECR)
     end
   end
 end

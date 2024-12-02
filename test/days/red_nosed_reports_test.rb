@@ -31,15 +31,23 @@ class AOC2024::RedNosedReportsTest < Minitest::Test
     assert_equal([1, 3, 6, 7, 9], lists[5])
   end
 
-  def test_report_safe?
-    lists = @rnr.read_lists(INPUT)
+  def test_calculate_diffs
+    diffs = @rnr.calculate_diffs(INPUT)
 
-    assert(@rnr.report_safe?(lists[0]))
-    refute(@rnr.report_safe?(lists[1]))
-    refute(@rnr.report_safe?(lists[2]))
-    refute(@rnr.report_safe?(lists[3]))
-    refute(@rnr.report_safe?(lists[4]))
-    assert(@rnr.report_safe?(lists[5]))
+    assert_equal([[7, 6, 4, 2, 1]], diffs[Set[1, 2]])
+    assert_equal([[1, 2, 7, 8, 9]], diffs[Set[-1, -5]])
+    assert_equal([[1, 3, 6, 7, 9]], diffs[Set[-1, -2, -3]])
+  end
+
+  def test_report_safe?
+    diffs = @rnr.calculate_diffs(INPUT).keys
+
+    assert(@rnr.report_safe?(diffs[0]))
+    refute(@rnr.report_safe?(diffs[1]))
+    refute(@rnr.report_safe?(diffs[2]))
+    refute(@rnr.report_safe?(diffs[3]))
+    refute(@rnr.report_safe?(diffs[4]))
+    assert(@rnr.report_safe?(diffs[5]))
   end
 
   def test_part1
