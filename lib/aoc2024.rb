@@ -16,7 +16,8 @@ module AOC2024
 
   DAY_MAP = [
     'there_is_no_day_zero',
-    'historian_hysteria'
+    'historian_hysteria',
+    'red_nosed_reports'
   ].freeze
 
   def self.class_from_day(day)
