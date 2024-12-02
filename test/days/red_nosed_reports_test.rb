@@ -50,9 +50,26 @@ class AOC2024::RedNosedReportsTest < Minitest::Test
     assert(@rnr.report_safe?(diffs[5]))
   end
 
+  def test_count_safe_dampener
+    diffs = @rnr.calculate_diffs(INPUT)
+
+    assert_equal(1, @rnr.count_safe_dampener(diffs.keys[0], diffs.values[0]))
+    refute_equal(1, @rnr.count_safe_dampener(diffs.keys[1], diffs.values[1]))
+    refute_equal(1, @rnr.count_safe_dampener(diffs.keys[2], diffs.values[2]))
+    assert_equal(1, @rnr.count_safe_dampener(diffs.keys[3], diffs.values[3]))
+    assert_equal(1, @rnr.count_safe_dampener(diffs.keys[4], diffs.values[4]))
+    assert_equal(1, @rnr.count_safe_dampener(diffs.keys[5], diffs.values[5]))
+  end
+
   def test_part1
     @rnr.setup(INPUT)
 
     assert_equal(2, @rnr.part1)
+  end
+
+  def test_part2
+    @rnr.setup(INPUT)
+
+    assert_equal(4, @rnr.part2)
   end
 end
