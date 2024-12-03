@@ -15,19 +15,34 @@ class AOC2024::MullItOverTest < Minitest::Test
     select(){,(where()+-mul(514,727);:]]what():^*from(764,547) mul(550,305)$^^%>
   EOI
 
+  INPUT2 =
+    "xmul(2,4)&mul[3,7]!^don't()_mul(5,5)+mul(32,64](mul(11,8)undo()?mul(8,5))"
+
   def setup
     @mio = AOC2024::MullItOver.new
   end
 
-  def test_find_muls
-    program = @mio.setup(INPUT)
+  def test_parse_program
+    program = @mio.parse_program(INPUT.lines(chomp: true))
 
     assert_equal(
       [
         'mul(2,4)', 'mul(5,5)', 'mul(11,8)',
         'mul(8,5)', 'mul(514,727)', 'mul(550,305)'
       ],
-      @mio.find_muls(program)
+      program
+    )
+  end
+
+  def test_parse_program_input2
+    program = @mio.parse_program(INPUT2.lines(chomp: true))
+
+    assert_equal(
+      [
+        'mul(2,4)', "don't()", 'mul(5,5)',
+        'mul(11,8)', 'do()', 'mul(8,5)'
+      ],
+      program
     )
   end
 
@@ -44,5 +59,17 @@ class AOC2024::MullItOverTest < Minitest::Test
     @mio.setup(INPUT)
 
     assert_equal(541_589, @mio.part1)
+  end
+
+  def test_part1_input2
+    @mio.setup(INPUT2)
+
+    assert_equal(161, @mio.part1)
+  end
+
+  def test_part2
+    @mio.setup(INPUT2)
+
+    assert_equal(48, @mio.part2)
   end
 end
