@@ -14,11 +14,13 @@ require 'aoc2024/day'
 module AOC2024
   INPUT_DIR = ::File.expand_path('../etc', __dir__)
 
-  DAY_MAP = %w[
-    there_is_no_day_zero
-    historian_hysteria
-    red_nosed_reports
-    mull_it_over
+  DAY_MAP = [
+    'there_is_no_day_zero',     # Day 0
+    'historian_hysteria',
+    'red_nosed_reports',
+    'mull_it_over',
+    nil,
+    'print_queue'               # Day 5
   ].freeze
 
   def self.class_from_day(day)
