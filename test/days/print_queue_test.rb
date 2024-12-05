@@ -70,4 +70,10 @@ class AOC2024::PrintQueueTest < Minitest::Test
 
     assert_equal(143, @pq.part1)
   end
+
+  def test_part2
+    @pq.setup(INPUT)
+
+    assert_equal(123, @pq.part2)
+  end
 end
