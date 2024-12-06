@@ -19,7 +19,7 @@ module AOC2024
     'historian_hysteria',
     'red_nosed_reports',
     'mull_it_over',
-    nil,
+    'ceres_search',
     'print_queue'               # Day 5
   ].freeze
 
