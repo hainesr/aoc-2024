@@ -28,37 +28,74 @@ module AOC2024
         # Diagonal up.
         [[[0, 0], 'X'], [[1, -1], 'M'], [[2, -2], 'A'], [[3, -3], 'S']].freeze,
         [[[0, 0], 'S'], [[1, -1], 'A'], [[2, -2], 'M'], [[3, -3], 'X']].freeze
+      ].freeze,
+
+      # Part 2.
+      [
+        # MAS, MAS.
+        [
+          [[0, 0], 'M'], [[2, 0], 'M'],
+          [[1, 1], 'A'],
+          [[0, 2], 'S'], [[2, 2], 'S']
+        ].freeze,
+
+        # SAM, SAM.
+        [
+          [[0, 0], 'S'], [[2, 0], 'S'],
+          [[1, 1], 'A'],
+          [[0, 2], 'M'], [[2, 2], 'M']
+        ].freeze,
+
+        # MAS, SAM.
+        [
+          [[0, 0], 'M'], [[2, 0], 'S'],
+          [[1, 1], 'A'],
+          [[0, 2], 'M'], [[2, 2], 'S']
+        ].freeze,
+
+        # SAM, MAS.
+        [
+          [[0, 0], 'S'], [[2, 0], 'M'],
+          [[1, 1], 'A'],
+          [[0, 2], 'S'], [[2, 2], 'M']
+        ].freeze
       ].freeze
     ].freeze
 
     def setup(input = read_input_file.chomp)
-      @count = count_patterns(read_grid(input))
+      @counts = count_patterns(read_grid(input))
     end
 
     def part1
-      @count
+      @counts[0]
+    end
+
+    def part2
+      @counts[1]
     end
 
     def count_patterns(grid)
-      count = 0
+      counts = [0, 0]
       width = grid[0].size
       height = grid.size
 
       (0...height).each do |row|
         (0...width).each do |col|
-          count += PATTERNS[0].count do |pattern|
-            pattern.all? do |(dx, dy), c|
-              x = col + dx
-              y = row + dy
-              next false if x.negative? || x >= width || y.negative? || y >= height
+          2.times do |part|
+            counts[part] += PATTERNS[part].count do |pattern|
+              pattern.all? do |(dx, dy), c|
+                x = col + dx
+                y = row + dy
+                next false if x.negative? || x >= width || y.negative? || y >= height
 
-              grid[y][x] == c
+                grid[y][x] == c
+              end
             end
           end
         end
       end
 
-      count
+      counts
     end
 
     def read_grid(input)

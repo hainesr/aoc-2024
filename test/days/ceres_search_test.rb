@@ -40,4 +40,10 @@ class AOC2024::CeresSearchTest < Minitest::Test
 
     assert_equal(18, @cs.part1)
   end
+
+  def test_part2
+    @cs.setup(INPUT)
+
+    assert_equal(9, @cs.part2)
+  end
 end
