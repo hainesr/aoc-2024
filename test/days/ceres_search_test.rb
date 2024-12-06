@@ -27,8 +27,8 @@ class AOC2024::CeresSearchTest < Minitest::Test
     @cs = AOC2024::CeresSearch.new
   end
 
-  def test_setup
-    grid = @cs.setup(INPUT)
+  def test_read_grid
+    grid = @cs.read_grid(INPUT)
 
     assert_equal(10, grid.size)
     assert_equal(10, grid[0].size)
