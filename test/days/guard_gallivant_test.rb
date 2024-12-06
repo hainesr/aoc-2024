@@ -39,10 +39,10 @@ class AOC2024::GuardGallivantTest < Minitest::Test
 
   def test_move
     map, start = @gg.read_map(INPUT)
-    row, col = @gg.move(map, start)
+    visited, loop = @gg.move(map, start)
 
-    assert_equal(9, row)
-    assert_equal(7, col)
+    refute(loop)
+    assert_equal(41, visited.size)
   end
 
   def test_part1

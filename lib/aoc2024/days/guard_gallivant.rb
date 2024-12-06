@@ -17,18 +17,20 @@ module AOC2024
     end
 
     def part1
-      move(@map, @start)
+      visited, = move(@map, @start)
 
-      @map.flatten.count('X')
+      visited.size
     end
 
-    def move(map, start, direction = 0)
+    def move(map, start)
       row, col = start
+      direction = 0
       width = map[0].size - 1
       height = map.size - 1
+      visited = Set.new
 
       loop do
-        map[row][col] = 'X'
+        visited << [row, col]
         break if row.zero? || row == height || col.zero? || col == width
 
         next_row = row + DIRECTIONS[direction][0]
@@ -44,7 +46,7 @@ module AOC2024
         end
       end
 
-      [row, col]
+      [visited, false]
     end
 
     def read_map(input)
