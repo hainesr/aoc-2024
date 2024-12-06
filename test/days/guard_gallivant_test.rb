@@ -42,12 +42,30 @@ class AOC2024::GuardGallivantTest < Minitest::Test
     visited, loop = @gg.move(map, start)
 
     refute(loop)
-    assert_equal(41, visited.size)
+    # 55 because `move` doesn't filter out multiple visits to the same cell.
+    assert_equal(55, visited.size)
+  end
+
+  def test_move_with_loop
+    map, start = @gg.read_map(INPUT)
+    map[6][3] = '#'
+    visited, loop = @gg.move(map, start)
+
+    assert(loop)
+    # 22 because `move` doesn't filter out multiple visits to the same cell.
+    assert_equal(22, visited.size)
   end
 
   def test_part1
     @gg.setup(INPUT)
 
     assert_equal(41, @gg.part1)
+  end
+
+  def test_part2
+    @gg.setup(INPUT)
+    @gg.part1 # Cheeky dependency on part 1 to set up the visited array.
+
+    assert_equal(6, @gg.part2)
   end
 end

@@ -18,8 +18,21 @@ module AOC2024
 
     def part1
       visited, = move(@map, @start)
+      @visited = visited.map { |(r, c), _| [r, c] }.uniq
 
-      visited.size
+      @visited.size
+    end
+
+    def part2
+      @visited[1..].count do |row, col|
+        @map[row][col] = '#'
+
+        _, looped = move(@map, @start)
+        # Restore the map to its original state.
+        @map[row][col] = '.'
+
+        looped
+      end
     end
 
     def move(map, start)
@@ -30,7 +43,7 @@ module AOC2024
       visited = Set.new
 
       loop do
-        visited << [row, col]
+        return [visited, true] unless visited.add?([[row, col], direction])
         break if row.zero? || row == height || col.zero? || col == width
 
         next_row = row + DIRECTIONS[direction][0]
@@ -38,8 +51,6 @@ module AOC2024
 
         if map[next_row][next_col] == '#'
           direction = (direction + 1) % 4
-          row += DIRECTIONS[direction][0]
-          col += DIRECTIONS[direction][1]
         else
           row = next_row
           col = next_col
