@@ -17,17 +17,19 @@ module AOC2024
     end
 
     def part1
-      visited, = move(@map, @start)
-      @visited = visited.map { |(r, c), _| [r, c] }.uniq
+      corners, = move(@map, @start)
+      @visited = visited(corners)
 
       @visited.size
     end
 
     def part2
-      @visited[1..].count do |row, col|
+      # Don't put a block on the start position.
+      (@visited - [@start]).count do |row, col|
         @map[row][col] = '#'
 
         _, looped = move(@map, @start)
+
         # Restore the map to its original state.
         @map[row][col] = '.'
 
@@ -40,24 +42,45 @@ module AOC2024
       direction = 0
       width = map[0].size - 1
       height = map.size - 1
-      visited = Set.new
+      corners = Set[[[row, col], direction]]
 
       loop do
-        return [visited, true] unless visited.add?([[row, col], direction])
-        break if row.zero? || row == height || col.zero? || col == width
+        if row.zero? || row == height || col.zero? || col == width
+          corners.add([[row, col], direction])
+          break
+        end
 
         next_row = row + DIRECTIONS[direction][0]
         next_col = col + DIRECTIONS[direction][1]
 
         if map[next_row][next_col] == '#'
           direction = (direction + 1) % 4
+
+          # If we've been here before, we're in a loop.
+          return [corners, true] unless corners.add?([[row, col], direction])
         else
           row = next_row
           col = next_col
         end
       end
 
-      [visited, false]
+      [corners, false]
+    end
+
+    def visited(corners)
+      visited = []
+
+      corners.each_cons(2) do |((row1, col1), _), ((row2, col2), _)|
+        if row1 == row2
+          c1, c2 = [col1, col2].sort
+          visited.concat((c1..c2).map { |c| [row1, c] })
+        else
+          r1, r2 = [row1, row2].sort
+          visited.concat((r1..r2).map { |r| [r, col1] })
+        end
+      end
+
+      visited.uniq
     end
 
     def read_map(input)

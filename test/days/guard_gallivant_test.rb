@@ -39,21 +39,34 @@ class AOC2024::GuardGallivantTest < Minitest::Test
 
   def test_move
     map, start = @gg.read_map(INPUT)
-    visited, loop = @gg.move(map, start)
+    corners, loop = @gg.move(map, start)
 
     refute(loop)
-    # 55 because `move` doesn't filter out multiple visits to the same cell.
-    assert_equal(55, visited.size)
+    assert_equal(12, corners.size)
   end
 
   def test_move_with_loop
     map, start = @gg.read_map(INPUT)
     map[6][3] = '#'
-    visited, loop = @gg.move(map, start)
+    corners, loop = @gg.move(map, start)
 
     assert(loop)
-    # 22 because `move` doesn't filter out multiple visits to the same cell.
-    assert_equal(22, visited.size)
+    assert_equal(4, corners.size)
+  end
+
+  def test_visited
+    two_corners = Set[[[6, 4], 0], [[1, 4], 0]]
+    twelve_corners = Set[
+      [[6, 4], 0], [[1, 4], 0], [[1, 8], 1], [[6, 8], 2],
+      [[6, 2], 3], [[4, 2], 0], [[4, 6], 1], [[8, 6], 2],
+      [[8, 1], 3], [[7, 1], 0], [[7, 7], 1], [[9, 7], 2]
+    ]
+
+    assert_equal(
+      [[1, 4], [2, 4], [3, 4], [4, 4], [5, 4], [6, 4]],
+      @gg.visited(two_corners)
+    )
+    assert_equal(41, @gg.visited(twelve_corners).size)
   end
 
   def test_part1
