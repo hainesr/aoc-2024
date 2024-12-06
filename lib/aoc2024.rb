@@ -20,7 +20,8 @@ module AOC2024
     'red_nosed_reports',
     'mull_it_over',
     'ceres_search',
-    'print_queue'               # Day 5
+    'print_queue',              # Day 5
+    'guard_gallivant'
   ].freeze
 
   def self.class_from_day(day)
