@@ -21,7 +21,8 @@ module AOC2024
     'mull_it_over',
     'ceres_search',
     'print_queue',              # Day 5
-    'guard_gallivant'
+    'guard_gallivant',
+    'bridge_repair'
   ].freeze
 
   def self.class_from_day(day)
