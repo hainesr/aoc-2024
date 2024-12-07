@@ -46,6 +46,7 @@ module AOC2024
     end
 
     def possible?(answer, tail, head, ops = OPS)
+      return false if head > answer
       return ops.any? { |op| answer == head.send(op, tail[0]) } if tail.size == 1
 
       ops.any? do |op|
