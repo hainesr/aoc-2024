@@ -46,9 +46,22 @@ class AOC2024::BridgeRepairTest < Minitest::Test
     assert(@br.possible?(3267, [40, 27], 81))
   end
 
+  def test_integer_cat
+    assert_equal(123, 1.cat(23))
+    assert_equal(1234, 12.cat(34))
+    assert_equal(12_345, 123.cat(45))
+  end
+
   def test_part1
     @br.setup(INPUT)
 
     assert_equal(3749, @br.part1)
+  end
+
+  def test_part2
+    @br.setup(INPUT)
+    @br.part1 # Cheeky dependency on part1 to add up the two-op answers.
+
+    assert_equal(11_387, @br.part2)
   end
 end
