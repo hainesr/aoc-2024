@@ -22,7 +22,8 @@ module AOC2024
     'ceres_search',
     'print_queue',              # Day 5
     'guard_gallivant',
-    'bridge_repair'
+    'bridge_repair',
+    'resonant_collinearity'
   ].freeze
 
   def self.class_from_day(day)
