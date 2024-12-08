@@ -33,20 +33,15 @@ class AOC2024::ResonantCollinearityTest < Minitest::Test
     side_length, antennae = @rc.read_input(INPUT)
 
     assert_equal(12, side_length)
-    assert_equal(
-      {
-        '0' => [[1, 8], [2, 5], [3, 7], [4, 4]],
-        'A' => [[5, 6], [8, 8], [9, 9]]
-      },
-      antennae
-    )
+    assert_equal([[1, 8], [2, 5], [3, 7], [4, 4]], antennae[0])
+    assert_equal([[5, 6], [8, 8], [9, 9]], antennae[1])
   end
 
   def test_find_antinodes
     _, antennae = @rc.setup(INPUT)
-    antinodes = @rc.find_antinodes(antennae)
 
-    assert_equal(14, antinodes.size)
+    assert_equal(5, @rc.find_antinodes(antennae[1]).size)
+    assert_equal(10, @rc.find_antinodes(antennae[0]).size)
   end
 
   def test_part1

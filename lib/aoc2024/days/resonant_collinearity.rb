@@ -15,22 +15,20 @@ module AOC2024
     end
 
     def part1
-      find_antinodes(@antennae).size
+      @antennae.reduce(Set.new) do |acc, antennae|
+        acc + find_antinodes(antennae)
+      end.size
     end
 
     def find_antinodes(antennae, bounds = @side_length)
-      antinodes = Set.new
+      antinodes = antennae.combination(2).flat_map do |((x1, y1), (x2, y2))|
+        diff_x = x2 - x1
+        diff_y = y2 - y1
 
-      antennae.each_value do |list|
-        antinodes += list.combination(2).flat_map do |((x1, y1), (x2, y2))|
-          diff_x = x2 - x1
-          diff_y = y2 - y1
-
-          [[x1 - diff_x, y1 - diff_y], [x2 + diff_x, y2 + diff_y]]
-        end
+        [[x1 - diff_x, y1 - diff_y], [x2 + diff_x, y2 + diff_y]]
       end
 
-      antinodes.select { |x, y| x >= 0 && y >= 0 && x < bounds && y < bounds }
+      Set.new(antinodes.select { |x, y| x >= 0 && y >= 0 && x < bounds && y < bounds })
     end
 
     def read_input(input)
@@ -47,7 +45,7 @@ module AOC2024
         end
       end
 
-      [side_length, antennae]
+      [side_length, antennae.values]
     end
   end
 end
