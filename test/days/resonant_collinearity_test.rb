@@ -38,15 +38,21 @@ class AOC2024::ResonantCollinearityTest < Minitest::Test
   end
 
   def test_find_antinodes
-    _, antennae = @rc.setup(INPUT)
+    bounds, antennae = @rc.setup(INPUT)
 
-    assert_equal(5, @rc.find_antinodes(antennae[1]).size)
-    assert_equal(10, @rc.find_antinodes(antennae[0]).size)
+    assert_equal(5, @rc.find_antinodes(antennae[1], bounds).size)
+    assert_equal(10, @rc.find_antinodes(antennae[0], bounds).size)
   end
 
   def test_part1
     @rc.setup(INPUT)
 
     assert_equal(14, @rc.part1)
+  end
+
+  def test_part2
+    @rc.setup(INPUT)
+
+    assert_equal(34, @rc.part2)
   end
 end

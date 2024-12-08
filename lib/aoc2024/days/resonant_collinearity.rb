@@ -16,19 +16,49 @@ module AOC2024
 
     def part1
       @antennae.reduce(Set.new) do |acc, antennae|
-        acc + find_antinodes(antennae)
+        acc + find_antinodes(antennae, @side_length)
       end.size
     end
 
-    def find_antinodes(antennae, bounds = @side_length)
-      antinodes = antennae.combination(2).flat_map do |((x1, y1), (x2, y2))|
+    def part2
+      @antennae.reduce(Set.new) do |acc, antennae|
+        acc + antennae + find_antinodes(antennae, @side_length, repeat: true)
+      end.size
+    end
+
+    def find_antinodes(antennae, bounds, repeat: false) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/PerceivedComplexity
+      antinodes = Set.new
+
+      antennae.combination(2) do |((x1, y1), (x2, y2))|
         diff_x = x2 - x1
         diff_y = y2 - y1
 
-        [[x1 - diff_x, y1 - diff_y], [x2 + diff_x, y2 + diff_y]]
+        i = 1
+        loop do
+          nx = x1 - (diff_x * i)
+          ny = y1 - (diff_y * i)
+          break if nx.negative? || ny.negative? || nx >= bounds || ny >= bounds
+
+          antinodes << [nx, ny]
+          break unless repeat
+
+          i += 1
+        end
+
+        j = 1
+        loop do
+          nx = x2 + (diff_x * j)
+          ny = y2 + (diff_y * j)
+          break if nx.negative? || ny.negative? || nx >= bounds || ny >= bounds
+
+          antinodes << [nx, ny]
+          break unless repeat
+
+          j += 1
+        end
       end
 
-      Set.new(antinodes.select { |x, y| x >= 0 && y >= 0 && x < bounds && y < bounds })
+      antinodes
     end
 
     def read_input(input)
