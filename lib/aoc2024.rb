@@ -23,7 +23,8 @@ module AOC2024
     'print_queue',              # Day 5
     'guard_gallivant',
     'bridge_repair',
-    'resonant_collinearity'
+    'resonant_collinearity',
+    'disk_fragmenter'
   ].freeze
 
   def self.class_from_day(day)
