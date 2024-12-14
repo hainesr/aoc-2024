@@ -24,7 +24,11 @@ module AOC2024
     'guard_gallivant',
     'bridge_repair',
     'resonant_collinearity',
-    'disk_fragmenter'
+    'disk_fragmenter',
+    nil,                        # Day 10
+    nil,
+    nil,
+    'claw_contraption'
   ].freeze
 
   def self.class_from_day(day)
