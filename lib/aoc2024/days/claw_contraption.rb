@@ -18,8 +18,14 @@ module AOC2024
       @games.sum { |game| game_cost(game) }.to_i
     end
 
-    def game_cost(game)
+    def part2
+      @games.sum { |game| game_cost(game, 10_000_000_000_000) }.to_i
+    end
+
+    def game_cost(game, conversion = 0)
       (ax, ay), (bx, by), (px, py) = game
+      px += conversion
+      py += conversion
 
       # I'll admit I had to look how to do this bit up...
       div = ((ax * by) - (ay * bx))

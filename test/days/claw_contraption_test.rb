@@ -51,9 +51,24 @@ class AOC2024::ClawContraptionTest < Minitest::Test
     assert_equal(0, @cc.game_cost(games[3]))
   end
 
+  def test_game_cost_part2
+    games = @cc.read_input(INPUT)
+
+    assert_equal(0, @cc.game_cost(games[0], 10_000_000_000_000))
+    assert_equal(459_236_326_669, @cc.game_cost(games[1], 10_000_000_000_000))
+    assert_equal(0, @cc.game_cost(games[2], 10_000_000_000_000))
+    assert_equal(416_082_282_239, @cc.game_cost(games[3], 10_000_000_000_000))
+  end
+
   def test_part1
     @cc.setup(INPUT)
 
     assert_equal(480, @cc.part1)
+  end
+
+  def test_part2
+    @cc.setup(INPUT)
+
+    assert_equal(875_318_608_908, @cc.part2)
   end
 end
