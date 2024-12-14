@@ -38,4 +38,10 @@ class AOC2024::DiskFragmenterTest < Minitest::Test
 
     assert_equal(1928, @df.part1)
   end
+
+  def test_part2
+    @df.setup(INPUT2)
+
+    assert_equal(2858, @df.part2)
+  end
 end
