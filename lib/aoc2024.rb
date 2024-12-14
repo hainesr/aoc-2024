@@ -28,7 +28,8 @@ module AOC2024
     nil,                        # Day 10
     nil,
     nil,
-    'claw_contraption'
+    'claw_contraption',
+    'restroom_redoubt'
   ].freeze
 
   def self.class_from_day(day)
