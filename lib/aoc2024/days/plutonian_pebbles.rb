@@ -15,11 +15,13 @@ module AOC2024
     end
 
     def part1
-      blink(@pebbles, 25).values.sum
+      @part2 = blink(@pebbles, 25)
+
+      @part2.values.sum
     end
 
     def part2
-      blink(@pebbles, 75).values.sum
+      blink(@part2, 50).values.sum
     end
 
     def blink(pebbles, blinks)
