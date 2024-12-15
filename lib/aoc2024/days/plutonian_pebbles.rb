@@ -18,6 +18,10 @@ module AOC2024
       blink(@pebbles, 25).values.sum
     end
 
+    def part2
+      blink(@pebbles, 75).values.sum
+    end
+
     def blink(pebbles, blinks)
       blinks.times do
         new_pebbles = Hash.new(0)
