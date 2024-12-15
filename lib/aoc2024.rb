@@ -26,7 +26,7 @@ module AOC2024
     'resonant_collinearity',
     'disk_fragmenter',
     nil,                        # Day 10
-    nil,
+    'plutonian_pebbles',
     nil,
     'claw_contraption',
     'restroom_redoubt'
