@@ -29,7 +29,10 @@ module AOC2024
     'plutonian_pebbles',
     nil,
     'claw_contraption',
-    'restroom_redoubt'
+    'restroom_redoubt',
+    nil,                        # Day 15
+    nil,
+    'chronospatial_computer'
   ].freeze
 
   def self.class_from_day(day)
