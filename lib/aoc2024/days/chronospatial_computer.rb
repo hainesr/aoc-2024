@@ -11,12 +11,32 @@ require 'aoc2024'
 module AOC2024
   class ChronospatialComputer < Day
     def setup(input = read_input_file.chomp)
-      registers, program = read_input(input)
-      @computer = Computer.new(registers, program)
+      @registers, @program = read_input(input)
+      @computer = Computer.new(@registers, @program)
     end
 
     def part1
       @computer.run!.join(',')
+    end
+
+    def part2
+      search
+    end
+
+    def search
+      queue = [0]
+
+      while queue.any?
+        potential_a = queue.shift
+        return potential_a if (potential_a.bit_length / 3) + 1 == @program.size
+
+        (0..7).each do |i|
+          a = (potential_a << 3) + i
+          @computer.reset!([a, @registers[1], @registers[2]])
+          out = @computer.run!
+          queue << a if out == @program[-((a.bit_length / 3) + 1)..]
+        end
+      end
     end
 
     def read_input(input)
@@ -57,6 +77,12 @@ module AOC2024
       @instructions[instr].call(op)
 
       true
+    end
+
+    def reset!(registers = nil)
+      @a, @b, @c = registers unless registers.nil?
+      @pc = 0
+      @output = []
     end
 
     private

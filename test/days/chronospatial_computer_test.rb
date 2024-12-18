@@ -18,6 +18,14 @@ class AOC2024::ChronospatialComputerTest < Minitest::Test
     Program: 0,1,5,4,3,0
   EOI
 
+  INPUT2 = <<~EOI
+    Register A: 2024
+    Register B: 0
+    Register C: 0
+
+    Program: 0,3,5,4,3,0
+  EOI
+
   def setup
     @cc = AOC2024::ChronospatialComputer.new
   end
@@ -86,5 +94,11 @@ class AOC2024::ChronospatialComputerTest < Minitest::Test
     @cc.setup(INPUT)
 
     assert_equal('4,6,3,5,6,3,5,2,1,0', @cc.part1)
+  end
+
+  def test_part2
+    @cc.setup(INPUT2)
+
+    assert_equal(117_440, @cc.part2)
   end
 end
