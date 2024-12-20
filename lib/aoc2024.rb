@@ -25,7 +25,7 @@ module AOC2024
     'bridge_repair',
     'resonant_collinearity',
     'disk_fragmenter',
-    nil,                        # Day 10
+    'hoof_it',                  # Day 10
     'plutonian_pebbles',
     nil,
     'claw_contraption',
