@@ -19,8 +19,7 @@ module AOC2024
     end
 
     def part1
-      regex = Regexp.new("^(#{@patterns.join('|')})+$")
-      @designs.count { |d| regex.match?(d) }
+      @designs.count { |d| count(d).positive? }
     end
 
     def part2
