@@ -74,9 +74,30 @@ class AOC2024::HoofItTest < Minitest::Test
     assert_equal(5, @hi.find_trails_for_trailhead(map, trailheads[8]))
   end
 
+  def test_find_trails_for_trailhead_unique
+    map = @hi.read_map(INPUT2)
+    trailheads = @hi.find_trailheads(map)
+
+    assert_equal(20, @hi.find_trails_for_trailhead(map, trailheads[0], unique: true))
+    assert_equal(24, @hi.find_trails_for_trailhead(map, trailheads[1], unique: true))
+    assert_equal(10, @hi.find_trails_for_trailhead(map, trailheads[2], unique: true))
+    assert_equal(4, @hi.find_trails_for_trailhead(map, trailheads[3], unique: true))
+    assert_equal(1, @hi.find_trails_for_trailhead(map, trailheads[4], unique: true))
+    assert_equal(4, @hi.find_trails_for_trailhead(map, trailheads[5], unique: true))
+    assert_equal(5, @hi.find_trails_for_trailhead(map, trailheads[6], unique: true))
+    assert_equal(8, @hi.find_trails_for_trailhead(map, trailheads[7], unique: true))
+    assert_equal(5, @hi.find_trails_for_trailhead(map, trailheads[8], unique: true))
+  end
+
   def test_part1
     @hi.setup(INPUT2)
 
     assert_equal(36, @hi.part1)
+  end
+
+  def test_part2
+    @hi.setup(INPUT2)
+
+    assert_equal(81, @hi.part2)
   end
 end

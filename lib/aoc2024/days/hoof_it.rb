@@ -23,7 +23,13 @@ module AOC2024
       end
     end
 
-    def find_trails_for_trailhead(map, trailhead)
+    def part2
+      @trailheads.sum do |trailhead|
+        find_trails_for_trailhead(@map, trailhead, unique: true)
+      end
+    end
+
+    def find_trails_for_trailhead(map, trailhead, unique: false)
       trails = 0
       visited = Set.new
       paths = [trailhead]
@@ -34,7 +40,7 @@ module AOC2024
       while paths.any?
         coord = paths.shift
         x, y = coord
-        next if visited.include?(coord)
+        next if visited.include?(coord) && !unique
 
         visited << coord
         height = map[y][x]
