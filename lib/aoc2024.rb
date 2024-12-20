@@ -32,7 +32,9 @@ module AOC2024
     'restroom_redoubt',
     nil,                        # Day 15
     nil,
-    'chronospatial_computer'
+    'chronospatial_computer',
+    nil,
+    'linen_layout'
   ].freeze
 
   def self.class_from_day(day)
