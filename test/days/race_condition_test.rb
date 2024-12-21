@@ -71,4 +71,10 @@ class AOC2024::RaceConditionTest < Minitest::Test
 
     assert_equal(5, @rc.part1(threshold: 20))
   end
+
+  def test_part2
+    @rc.setup(INPUT)
+
+    assert_equal(41, @rc.part2(threshold: 70))
+  end
 end

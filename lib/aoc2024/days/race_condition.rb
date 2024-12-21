@@ -24,32 +24,40 @@ module AOC2024
     end
 
     def part1(threshold: 100)
-      find_cheats(threshold: threshold)
+      find_cheats(2, threshold: threshold)
     end
 
-    def find_cheats(threshold: 100)
+    def part2(threshold: 100)
+      find_cheats(20, threshold: threshold)
+    end
+
+    def find_cheats(max_cheat = 2, threshold: 100) # rubocop:disable Metrics/AbcSize
       cheats = Hash.new(0)
 
       @start_dists.each do |pos, dist|
         # For each position, look at all the possible cheat positions.
-        ((pos[0] - 2)..(pos[0] + 2)).each do |x|
+        ((pos[0] - max_cheat)..(pos[0] + max_cheat)).each do |x|
           # Due to Manhattan distance, we can limit the range of y values
           # based on the x value.
-          dy = 2 - (pos[0] - x).abs
+          dy = max_cheat - (pos[0] - x).abs
 
           ((pos[1] - dy)..(pos[1] + dy)).each do |y|
             test_pos = [x, y]
+            next unless @finish_dists.key?(test_pos)
 
-            # Cost and benefit of the cheat. Cheat distance is always 2.
-            cost = dist + @finish_dists[test_pos] + 2
+            # Manhatten distance of the cheat.
+            cheat_dist = (pos[0] - x).abs + (pos[1] - y).abs
+
+            # Cost and benefit of the cheat.
+            cost = dist + @finish_dists[test_pos] + cheat_dist
             benefit = @finish_dists[@start] - cost
 
-            cheats[[pos, test_pos]] = benefit if benefit.positive?
+            cheats[[pos, test_pos]] = benefit if benefit >= threshold
           end
         end
       end
 
-      cheats.each_value.count { |c| c >= threshold }
+      cheats.size
     end
 
     def calc_distances(start)
