@@ -33,7 +33,7 @@ module AOC2024
     nil,                        # Day 15
     nil,
     'chronospatial_computer',
-    nil,
+    'ram_run',
     'linen_layout',
     'race_condition',           # Day 20
     nil,
