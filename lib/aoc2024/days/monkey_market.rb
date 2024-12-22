@@ -22,20 +22,14 @@ module AOC2024
     end
 
     def part2
-      # Get a set of the change sequences we've seen, so we only check each once.
-      changes_set = @changes.flat_map(&:keys).to_set
-
-      changes_set.map do |change|
-        @changes.sum do |c|
-          c.fetch(change, 0)
-        end
-      end.max
+      @changes.values.max
     end
 
     def build_history(input)
       last_secret_sum = 0
+      changes_totals = Hash.new(0)
 
-      changes = input.map do |initial|
+      input.each do |initial|
         secret = initial
         old_price = initial % 10
         changes = {}
@@ -56,11 +50,16 @@ module AOC2024
           change_sequence.shift
         end
 
+        # Keep a tally of the 2000th secrets.
         last_secret_sum += secret
-        changes
+
+        # Add the prices for each change sequence to their running totals.
+        changes.each do |k, v|
+          changes_totals[k] += v
+        end
       end
 
-      [last_secret_sum, changes]
+      [last_secret_sum, changes_totals]
     end
 
     def next_secret(s)
