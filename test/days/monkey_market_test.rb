@@ -17,6 +17,13 @@ class AOC2024::MonkeyMarketTest < Minitest::Test
     2024
   EOI
 
+  INPUT2 = <<~EOI
+    1
+    2
+    3
+    2024
+  EOI
+
   def setup
     @mm = AOC2024::MonkeyMarket.new
   end
@@ -40,5 +47,11 @@ class AOC2024::MonkeyMarketTest < Minitest::Test
     @mm.setup(INPUT)
 
     assert_equal(37_327_623, @mm.part1)
+  end
+
+  def test_part2
+    @mm.setup(INPUT2)
+
+    assert_equal(23, @mm.part2)
   end
 end
