@@ -39,6 +39,14 @@ module AOC2024
       Common::AStar.solve(@start, finish, neighbours, cost, heuristic)
     end
 
+    def part2(steps: 1024, finish: [70, 70])
+      pos = (steps...@positions.length).bsearch do |step|
+        part1(steps: step, finish: finish).nil?
+      end
+
+      @positions[pos - 1].join(',') # Array indexes start at 0!
+    end
+
     def parse_input(input)
       input.lines(chomp: true).map do |line|
         line.split(',').map(&:to_i)

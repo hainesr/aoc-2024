@@ -55,4 +55,10 @@ class AOC2024::RamRunTest < Minitest::Test
 
     assert_equal(22, @rr.part1(steps: 12, finish: [6, 6]))
   end
+
+  def test_part2
+    @rr.setup(INPUT)
+
+    assert_equal('6,1', @rr.part2(steps: 12, finish: [6, 6]))
+  end
 end
