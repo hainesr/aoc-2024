@@ -35,7 +35,9 @@ module AOC2024
     'chronospatial_computer',
     nil,
     'linen_layout',
-    'race_condition'            # Day 20
+    'race_condition',           # Day 20
+    nil,
+    'monkey_market'
   ].freeze
 
   def self.class_from_day(day)
