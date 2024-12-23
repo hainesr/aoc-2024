@@ -62,4 +62,10 @@ class AOC2024::LanPartyTest < Minitest::Test
 
     assert_equal(7, @lp.part1)
   end
+
+  def test_part2
+    @lp.setup(INPUT)
+
+    assert_equal('co,de,ka,ta', @lp.part2)
+  end
 end
