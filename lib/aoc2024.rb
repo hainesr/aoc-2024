@@ -37,7 +37,8 @@ module AOC2024
     'linen_layout',
     'race_condition',           # Day 20
     nil,
-    'monkey_market'
+    'monkey_market',
+    'lan_party'
   ].freeze
 
   def self.class_from_day(day)
