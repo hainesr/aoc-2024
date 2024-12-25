@@ -31,7 +31,7 @@ module AOC2024
     'claw_contraption',
     'restroom_redoubt',
     nil,                        # Day 15
-    nil,
+    'reindeer_maze',
     'chronospatial_computer',
     'ram_run',
     'linen_layout',
