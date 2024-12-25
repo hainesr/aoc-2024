@@ -39,7 +39,8 @@ module AOC2024
     nil,
     'monkey_market',
     'lan_party',
-    'crossed_wires'
+    'crossed_wires',
+    'code_chronicle'            # Day 25
   ].freeze
 
   def self.class_from_day(day)
