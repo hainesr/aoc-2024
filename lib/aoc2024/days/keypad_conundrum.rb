@@ -47,6 +47,10 @@ module AOC2024
       @codes.sum { |code| min_moves_for_code(code) * code.to_i }
     end
 
+    def part2
+      @codes.sum { |code| min_moves_for_code(code, 25) * code.to_i }
+    end
+
     def moves_to_position(start, finish, deadspot)
       return ['A'] if start == finish
 
