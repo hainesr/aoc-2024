@@ -36,7 +36,7 @@ module AOC2024
     'ram_run',
     'linen_layout',
     'race_condition',           # Day 20
-    nil,
+    'keypad_conundrum',
     'monkey_market',
     'lan_party',
     'crossed_wires',
